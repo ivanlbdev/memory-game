@@ -24,6 +24,7 @@ $root: ".pop-window";
     display: flex;
     justify-content: center;
     border-radius: 20px;
+    background: linear-gradient(180deg, #D6E2EF 0%, #F3DFD5 100%);
     animation: show .3s ease-in-out;
   }
 
