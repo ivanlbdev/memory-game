@@ -1,7 +1,7 @@
 export class GameMemory {
     #currentChoice = []
     #findValues = []
-    #lock = 0
+    #lock = 1
     luckClick = 0
     badClick = 0
 
@@ -9,14 +9,14 @@ export class GameMemory {
         this.countItemsInRow = settings.countItemsInRow || 4
         this.marginBlocks = settings.marginBlocks || 10
         this.baseClass = settings.baseClass || 'game'
-        this.classItem = `${settings.baseClass}__item` || 'game__item'
-        this.frontClass = `${settings.baseClass}__front` || 'game__front'
-        this.backClass = `${settings.baseClass}__back` || 'game__back'
-        this.winClass = `${settings.baseClass}__win` || 'game__win'
+        this.classItem = `${this.baseClass}__item` || 'game__item'
+        this.frontClass = `${this.baseClass}__front` || 'game__front'
+        this.backClass = `${this.baseClass}__back` || 'game__back'
+        this.winClass = `${this.baseClass}__win` || 'game__win'
         this.values = this.#shakeArrayAndMulti(settings.listImages) || []
-        this.blockGame = document.querySelector(`.${settings.baseClass}__container`)
-        this.parentNodeGame = document.querySelector(`.${settings.baseClass}`)
-        this.headerGame = document.querySelector(`.${settings.baseClass}__header`) || 0
+        this.blockGame = document.querySelector(`.${this.baseClass}__container`)
+        this.parentNodeGame = document.querySelector(`.${this.baseClass}`)
+        this.headerGame = document.querySelector(`.${this.baseClass}__header`) || 0
         this.#makeGame()
         this.nodesItems = this.blockGame.querySelectorAll(`.${this.classItem}`)
         this.#clickHandler()
@@ -57,17 +57,19 @@ export class GameMemory {
             const backButtonItem = this.#makeElem('div', this.backClass, [`<img src="./images/${item}.jpg">`])
             const frontButtonItem = this.#makeElem('div', this.frontClass, [`<svg class="a-logo" width="${Math.floor(itemSize*0.6)}px" height="${Math.floor(itemSize*0.2)}px"> <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#logo" /> </svg> <svg class="a-logo-quest" height="${Math.floor(itemSize*0.4)}px" width="${Math.floor(itemSize*0.1)}px"> <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#logo-quest" /> </svg>`])
             const buttonItem = this.#makeElem('div',this.classItem, [], [frontButtonItem, backButtonItem])
-            buttonItem.classList.add(this.classItem + '-open')
             buttonItem.style.height = `${itemSize}px`
             buttonItem.style.width = `${itemSize}px`
-
             buttonItem.setAttribute('data-value', item)
-
             this.blockGame.append(buttonItem)
 
             setTimeout(() => {
-                buttonItem.classList.remove( `${this.classItem}-open`)
-            }, 3000)
+                this.#flipCard(1, buttonItem)
+            }, 700)
+
+            setTimeout(() => {
+                this.#flipCard(0, buttonItem)
+                this.#lock = 0
+            }, 4500)
         })
     }
 
@@ -98,11 +100,17 @@ export class GameMemory {
         !this.#lock && this.#openItem(elem);
     }
 
+    #flipCard(isOpen, node) {
+        node.classList.toggle('a-card-animate')
+        setTimeout(() => {
+            isOpen ? node.classList.add(`${this.classItem}-open`) : node.classList.remove(`${this.classItem}-open`)
+        }, 100)
+    }
+
     #openItem(elem) {
-        console.log(elem.classList.contains(this.classItem + '-open'))
         if (!elem.classList.contains(`${this.classItem}-open`)) {
             const value = elem.getAttribute('data-value')
-            elem.classList.add(`${this.classItem}-open`)
+            this.#flipCard(1, elem)
             this.#currentChoice.push(value)
             this.#currentChoice.length === 2 ? this.#checkCurrentValues() : 0
         }
@@ -112,7 +120,7 @@ export class GameMemory {
         for (let node of this.nodesItems) {
             const value = node.getAttribute('data-value')
             !this.#findValues.includes(value) && node.classList.contains(`${this.classItem}-open`)
-                ? node.classList.remove(`${this.classItem}-open`)
+                ? this.#flipCard(0, node)
                 : 0
         }
     }
@@ -153,7 +161,6 @@ export class GameMemory {
         textHref.setAttribute('href', '#')
         const container = this.#makeElem('div', `${this.winClass}`, [], [header, image, textHref])
 
-        window.scrollTo(0, 0)
         this.parentNodeGame.innerHTML = ''
         this.parentNodeGame.append(container)
         document.body.style.overflow = 'hidden'

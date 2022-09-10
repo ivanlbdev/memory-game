@@ -1,0 +1,21 @@
+$root: ".a-card-animate";
+
+#{$root} {
+  transform: rotateY(180deg) !important;
+
+  &_open {
+    animation: open 1s ease-in-out;
+  }
+}
+
+@keyframes open {
+  from {
+    display: none;
+    transform: rotateY(0deg);
+  }
+
+  to {
+    display: flex;
+    transform: rotateY(180deg);
+  }
+}

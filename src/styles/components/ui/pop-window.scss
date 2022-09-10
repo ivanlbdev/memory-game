@@ -24,6 +24,7 @@ $root: ".pop-window";
     display: flex;
     justify-content: center;
     border-radius: 20px;
+    animation: show .3s ease-in-out;
   }
 
   &__close {
@@ -43,5 +44,16 @@ $root: ".pop-window";
       height: 100%;
       border-radius: 0;
     }
+  }
+}
+
+
+@keyframes show {
+  from {
+    transform: translateY(-1000px);
+  }
+
+  to {
+    transform: translateY(0px);
   }
 }
