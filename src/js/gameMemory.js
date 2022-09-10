@@ -31,7 +31,7 @@ export class GameMemory {
         const workHeight = this.parentNodeGame.offsetHeight - (this.headerGame?.offsetHeight || 0)
 
         const base = workHeight > workWidth ? workWidth : workHeight
-        const result = Math.floor(base / this.countItemsInRow - this.marginBlocks * this.countItemsInRow - 1)
+        const result = Math.floor(base / this.countItemsInRow - this.marginBlocks * (this.countItemsInRow - 1))
         return {
             card: result,
             container: result * this.countItemsInRow + this.countItemsInRow * this.marginBlocks
