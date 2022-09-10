@@ -16,6 +16,7 @@ $root: ".a-button";
     }
 
     &_white {
+      animation: show-white .5s ease-in-out;
 
       svg {
         fill: #ffffff;
@@ -24,6 +25,7 @@ $root: ".a-button";
     }
 
     &_black {
+      animation: show-black .5s ease-in-out;
 
       svg {
         fill: #1F2229;
@@ -55,6 +57,11 @@ $root: ".a-button";
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: transform .4s ease-in-out;
+
+      &:hover {
+        transform: translateY(-40px);
+      }
     }
 
     &__text {
@@ -96,5 +103,25 @@ $root: ".a-button";
         font-size: 24px;
       }
     }
+  }
+}
+
+@keyframes show-white {
+  from {
+    transform: translateX(1500px);
+  }
+
+  to {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes show-black {
+  from {
+    transform: translateY(-1500px);
+  }
+
+  to {
+    transform: translateY(0px);
   }
 }
