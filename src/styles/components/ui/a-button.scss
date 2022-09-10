@@ -61,6 +61,7 @@ $root: ".a-button";
 
       &:hover {
         transform: translateY(-40px);
+        -webkit-transform: translateY(-40px);
       }
     }
 
@@ -109,19 +110,23 @@ $root: ".a-button";
 @keyframes show-white {
   from {
     transform: translateX(1500px);
+    -webkit-transform: translateX(1500px);
   }
 
   to {
     transform: translateX(0px);
+    -webkit-transform: translateX(0px);
   }
 }
 
 @keyframes show-black {
   from {
     transform: translateY(-1500px);
+    -webkit-transform: translateY(-1500px);
   }
 
   to {
     transform: translateY(0px);
+    -webkit-transform: translateY(0px);
   }
 }

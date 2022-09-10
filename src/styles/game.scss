@@ -52,7 +52,6 @@ body {
   }
 
   &__item {
-    background: #1C1C1C;
     margin: 5px;
     transform: scale(1);
     position: relative;
@@ -79,10 +78,13 @@ body {
   }
 
   &__front {
+    background: #1C1C1C;
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
+    width: 100%;
+    height: 100%;
 
     .a-logo {
       margin-top: 30%;
@@ -95,12 +97,13 @@ body {
     width: 100%;
     height: 100%;
     display: none;
-    transform: rotateY(180deg);
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transform: rotateY(180deg);
+      -webkit-transform: rotateY(180deg);
     }
   }
 

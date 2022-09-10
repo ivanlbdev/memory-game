@@ -51,9 +51,11 @@ $root: ".pop-window";
 @keyframes show {
   from {
     transform: translateY(-1000px);
+    -webkit-transform: translateY(-1000px);
   }
 
   to {
     transform: translateY(0px);
+    -webkit-transform: translateY(0px);
   }
 }

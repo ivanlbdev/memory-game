@@ -2,6 +2,7 @@ $root: ".a-card-animate";
 
 #{$root} {
   transform: rotateY(180deg) !important;
+  -webkit-transform: rotateY(180deg) !important;
 
   &_open {
     animation: open 1s ease-in-out;
@@ -12,10 +13,12 @@ $root: ".a-card-animate";
   from {
     display: none;
     transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
   }
 
   to {
     display: flex;
     transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
   }
 }
