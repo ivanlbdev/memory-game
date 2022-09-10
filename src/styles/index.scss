@@ -1,0 +1,34 @@
+@import "normalize.css";
+
+@import "components/components";
+
+$main: ".main";
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Trebuchet MS', serif;
+}
+
+body {
+  position: relative;
+  background: #1e1e1e;
+}
+
+#{$main} {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+
+  &__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+}

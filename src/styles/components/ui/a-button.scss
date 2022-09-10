@@ -1,0 +1,100 @@
+@import "../../variables/media";
+
+$root: ".a-button";
+
+#{$root} {
+
+  &-large {
+    width: 491px;
+    height: 223px;
+    cursor: pointer;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      stroke-width: 4;
+    }
+
+    &_white {
+
+      svg {
+        fill: #ffffff;
+        stroke: #1F2229;
+      }
+    }
+
+    &_black {
+
+      svg {
+        fill: #1F2229;
+        stroke: #ffffff;
+      }
+    }
+
+    &_abs {
+      position: absolute;
+      top: -30px;
+      left: -30px;
+
+      svg {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+      }
+
+    }
+
+    &__button {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__text {
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 40px;
+      color: #ffffff;
+      position: relative;
+      max-width: 387px;
+      text-align: center;
+      z-index: 1;
+    }
+  }
+}
+
+@media (max-width: #{$mediaSM}) {
+  #{$root} {
+
+    &-large {
+      width: 85%;
+
+      &_abs {
+        top: -30px;
+        left: 20px;
+
+        svg {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 0;
+        }
+      }
+
+      &__text {
+        padding: 0 10px;
+        font-size: 24px;
+      }
+    }
+  }
+}

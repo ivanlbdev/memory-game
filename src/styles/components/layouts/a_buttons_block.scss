@@ -1,0 +1,16 @@
+@import "../../variables/media";
+
+$root: ".a-buttons-block";
+
+#{$root} {
+  position: relative;
+}
+
+
+@media (max-width: #{$mediaSM}) {
+  #{$root} {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
