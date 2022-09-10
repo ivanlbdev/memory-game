@@ -161,8 +161,10 @@ export class GameMemory {
         textHref.setAttribute('href', '#')
         const container = this.#makeElem('div', `${this.winClass}`, [], [header, image, textHref])
 
-        this.parentNodeGame.innerHTML = ''
-        this.parentNodeGame.append(container)
+        setTimeout(() => {
+            this.parentNodeGame.innerHTML = ''
+            this.parentNodeGame.append(container)
+        }, 1000)
         document.body.style.overflow = 'hidden'
     }
 
