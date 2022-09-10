@@ -8,7 +8,7 @@ const popUpData = {
         attributes: [
             {
                 name: 'src',
-                value: '#'
+                value: 'game.html'
             }
         ],
     }

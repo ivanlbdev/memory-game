@@ -18,6 +18,7 @@ module.exports = {
     },
     entry: {
         index: path.resolve(__dirname, './src/index.js'),
+        game: path.resolve(__dirname, './src/game.js'),
     },
     output: {
         path: path.resolve(__dirname, './dist'),
@@ -29,6 +30,13 @@ module.exports = {
             filename: 'index.html',
             minify: false,
             chunks: ['index']
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, './src/game.html'),
+            filename: 'game.html',
+            minify: false,
+            chunks: ['game'],
+            inject: 'head'
         }),
         new CleanWebpackPlugin(),
         new CopyPlugin({
