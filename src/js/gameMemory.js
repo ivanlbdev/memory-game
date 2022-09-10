@@ -40,7 +40,7 @@ export class GameMemory {
 
     #makeElem(element, className = '', inner = [], nodes = [], style = []) {
         const elem = document.createElement(element)
-        elem.className = className
+        className !== '' ? elem.className = className : 0
         let content = ''
         inner.map(item => content += item)
         elem.innerHTML = inner
@@ -150,6 +150,7 @@ export class GameMemory {
         const image = this.#makeElem('img')
         image.setAttribute('src', './images/win.png')
         const textHref = this.#makeElem('a', '',  ['Скачать стикерпак'])
+        textHref.setAttribute('href', '#')
         const container = this.#makeElem('div', `${this.winClass}`, [], [header, image, textHref])
 
         window.scrollTo(0, 0)
