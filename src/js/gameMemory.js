@@ -8,6 +8,7 @@ export class GameMemory {
     constructor(settings) {
         this.countItemsInRow = settings.countItemsInRow || 4
         this.marginBlocks = settings.marginBlocks || 10
+        this.isOpenStart = settings.isOpenStart || false
         this.baseClass = settings.baseClass || 'game'
         this.classItem = `${this.baseClass}__item` || 'game__item'
         this.frontClass = `${this.baseClass}__front` || 'game__front'
@@ -64,15 +65,20 @@ export class GameMemory {
             buttonItem.setAttribute('data-value', item)
             this.blockGame.append(buttonItem)
 
-            setTimeout(() => {
-                this.#flipCard(1, buttonItem)
-            }, 700)
+            if (this.isOpenStart) {
+                setTimeout(() => {
+                    this.#flipCard(1, buttonItem)
+                }, 700)
 
-            setTimeout(() => {
-                this.#flipCard(0, buttonItem)
-                this.#lock = 0
-            }, 4500)
+                setTimeout(() => {
+                    this.#flipCard(0, buttonItem)
+                    this.#lock ? this.#lock = 0 : 0
+                }, 4500)
+            } else {
+                this.#lock ? this.#lock = 0 : 0
+            }
         })
+
     }
 
     resizeBlocks() {
