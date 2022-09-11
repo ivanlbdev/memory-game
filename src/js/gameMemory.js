@@ -52,6 +52,7 @@ export class GameMemory {
         const sizes = this.#checkSize()
         const itemSize = sizes.card
         this.blockGame.style.width = `${sizes.container}px`
+        this.blockGame.style.margin = `-${this.marginBlocks /2}px`
 
         this.values.map((item) => {
             const backButtonItem = this.#makeElem('div', this.backClass, [`<img src="./images/${item}.jpg">`])
@@ -59,6 +60,7 @@ export class GameMemory {
             const buttonItem = this.#makeElem('div',this.classItem, [], [frontButtonItem, backButtonItem])
             buttonItem.style.height = `${itemSize}px`
             buttonItem.style.width = `${itemSize}px`
+            buttonItem.style.margin = `${this.marginBlocks / 2}px`
             buttonItem.setAttribute('data-value', item)
             this.blockGame.append(buttonItem)
 
